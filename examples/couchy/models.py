@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, timezone
 
 from couchdb.mapping import BooleanField
 from couchdb.mapping import DateTimeField
@@ -12,7 +12,7 @@ from .utils import url_for
 class URL(Document):
     target = TextField()
     public = BooleanField()
-    added = DateTimeField(default=datetime.utcnow())
+    added = DateTimeField(default=datetime.now(tz=timezone.utc))
     shorty_id = TextField(default=None)
     db = None
 

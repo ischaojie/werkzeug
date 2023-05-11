@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, timezone
 
 from sqlalchemy import Boolean
 from sqlalchemy import Column
@@ -28,7 +28,7 @@ class URL:
     def __init__(self, target, public=True, uid=None, added=None):
         self.target = target
         self.public = public
-        self.added = added or datetime.utcnow()
+        self.added = added or datetime.now(tz=timezone.utc)
         if not uid:
             while 1:
                 uid = get_random_uid()

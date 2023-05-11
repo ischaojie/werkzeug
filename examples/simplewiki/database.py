@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, timezone
 
 from sqlalchemy import Column
 from sqlalchemy import DateTime
@@ -77,7 +77,7 @@ class Revision:
             self.page = page
         self.text = text
         self.change_note = change_note
-        self.timestamp = timestamp or datetime.utcnow()
+        self.timestamp = timestamp or datetime.now(tz=timezone.utc)
 
     def render(self):
         """Render the page text into a genshi stream."""

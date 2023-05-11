@@ -1,6 +1,6 @@
 """Query the servers for information."""
 import socket
-from datetime import datetime
+from datetime import datetime, timezone
 from math import log
 
 from .utils import unicodecmp
@@ -18,7 +18,7 @@ class Syncable:
             self._sync()
         except (OSError, socket.timeout):
             return False
-        self.last_sync = datetime.utcnow()
+        self.last_sync = datetime.now(tz=timezone.utc)
         return True
 
 
